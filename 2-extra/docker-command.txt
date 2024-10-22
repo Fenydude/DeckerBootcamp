@@ -1,0 +1,5 @@
+docker run -d --name my-nginx -p 8080:80 nginx
+
+docker cp my-nginx:/usr/share/nginx/html/index.html ./index.html
+
+docker cp ./index.html my-nginx:/usr/share/nginx/html/index.html
