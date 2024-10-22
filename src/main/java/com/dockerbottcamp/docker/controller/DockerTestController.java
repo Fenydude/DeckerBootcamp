@@ -15,6 +15,6 @@ public class DockerTestController {
 
     @GetMapping("/get-docker")
     private String getDocker(){
-        return "Hello world with auto push and devops " + devops;
+        return "Hello world with auto push 2.0 and devops " + devops;
     }
 }
