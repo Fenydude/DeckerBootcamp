@@ -25,6 +25,7 @@ public class DockerTestController {
         return "Hello world with auto push 2.0 and devops " + devops;
     }
 
+
     @GetMapping("/get-sample-data")
     public List<String> getSampleData() {
         String query = "SELECT name FROM sample_table";
