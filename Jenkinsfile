@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-            maven 'Maven' // Используйте имя, которое вы указали при добавлении Maven
+                maven 'Maven' // Используйте имя, которое вы указали при добавлении Maven
     }
 
     stages {
