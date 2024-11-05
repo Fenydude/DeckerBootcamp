@@ -34,7 +34,7 @@ public class DockerTestController {
         return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
     }
 
-    @GetMapping("/get-sample")
+    @GetMapping("/get-sam")
     public List<String> getSample() {
         String query = "SELECT name FROM sample_table";
         return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
