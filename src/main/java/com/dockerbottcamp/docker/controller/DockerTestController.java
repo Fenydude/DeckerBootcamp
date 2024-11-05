@@ -33,4 +33,5 @@ public class DockerTestController {
         String query = "SELECT name FROM sample_table";
         return jdbcTemplate.query(query, (rs, rowNum) -> rs.getString("name"));
     }
+
 }
