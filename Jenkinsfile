@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'docker-agent1' }
     triggers {
             pollSCM('H/2 * * * *') // Проверяет изменения каждые 5 минут
     }
