@@ -1,13 +1,12 @@
 pipeline {
     agent any
     tools {
-            maven 'Maven' // Используйте имя, которое вы указали при добавлении Maven
+            maven 'Maven'
     }
 
     stages {
         stage('Checkout') {
             steps {
-                // Клонирование репозитория
                 checkout scm
             }
         }
@@ -15,7 +14,6 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    // Запускаем сборку проекта
                     sh 'mvn clean compile'
                 }
             }
@@ -24,7 +22,6 @@ pipeline {
         stage('Checkstyle') {
             steps {
                 script {
-                    // Запуск Checkstyle
                     sh 'mvn checkstyle:check'
                 }
             }
@@ -33,7 +30,6 @@ pipeline {
         stage('SpotBugs') {
             steps {
                 script {
-                    // Запуск SpotBugs
                     sh 'mvn spotbugs:check'
                 }
             }
@@ -42,7 +38,6 @@ pipeline {
         stage('Dependency-Check') {
             steps {
                 script {
-                    // Запуск Dependency-Check
                     sh 'mvn org.owasp:dependency-check-maven:check'
                 }
             }
@@ -51,7 +46,6 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Запуск тестов, если они есть
                     sh 'mvn test'
                 }
             }
@@ -59,12 +53,10 @@ pipeline {
     }
 
     post {
-        // Отмечаем сборку как неудачную, если есть ошибки на любом этапе
         failure {
             echo 'Build failed due to violations in Checkstyle, SpotBugs, or Dependency-Check.'
         }
 
-        // Отмечаем сборку как успешную, если все прошло
         success {
             echo 'Build completed successfully with no violations.'
         }
