@@ -1,5 +1,9 @@
 pipeline {
     agent any
+    triggers {
+            pollSCM('H/2 * * * *') // Проверяет изменения каждые 5 минут
+    }
+
     tools {
             maven 'Maven'
     }
