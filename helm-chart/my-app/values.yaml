@@ -1,0 +1,18 @@
+nginx:
+  replicas: 3
+  image: nginx:latest
+
+postgres:
+  image: postgres:15
+  username: devops
+  password: devops
+  database: devops
+
+springApp:
+  image: mbahurau/docker-bootcamp:latest
+  replicas: 1
+  environment:
+    SPRING_DATASOURCE_URL: jdbc:postgresql://postgres-service:5432/devops
+    SPRING_DATASOURCE_USERNAME: devops
+    SPRING_DATASOURCE_PASSWORD: devops
+    DEVOPS: Mikita Bahurau

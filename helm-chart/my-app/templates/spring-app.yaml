@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-app-helm
+spec:
+  replicas: {{ .Values.springApp.replicas }}
+  selector:
+    matchLabels:
+      app: spring-app
+  template:
+    metadata:
+      labels:
+        app: spring-app
+    spec:
+      containers:
+        - name: spring-app
+          image: {{ .Values.springApp.image }}
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: {{ .Values.springApp.environment.SPRING_DATASOURCE_URL }}
+            - name: SPRING_DATASOURCE_USERNAME
+              value: {{ .Values.springApp.environment.SPRING_DATASOURCE_USERNAME }}
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: {{ .Values.springApp.environment.SPRING_DATASOURCE_PASSWORD }}
+            - name: DEVOPS
+              value: {{ .Values.springApp.environment.DEVOPS }}
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-app-service-helm
+spec:
+  selector:
+    app: spring-app
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: ClusterIP
